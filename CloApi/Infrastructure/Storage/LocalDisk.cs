@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CloApi.Infrastructure.Storage
 {
-    public class LocalDisk : IDisk
+    public record class LocalDisk : IDisk
     {
         /// <summary>
         ///  Объект содержащий информацию о сервере, к которому прикреплен диск
