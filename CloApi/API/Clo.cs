@@ -1,4 +1,5 @@
 ﻿using CloApi.Infrastructure.AdditionalSoftware;
+using CloApi.Infrastructure.ObjectStorageS3;
 using CloApi.Infrastructure.ProjectObjects;
 using System;
 using System.Collections.Generic;
@@ -46,6 +47,13 @@ namespace CloApi.API
         public async Task<List<Recipe>?> GetRecipeAsync()
         {
             return await GetResultsAsync<Recipe>($"https://api.clo.ru/v1/recipe");
+        }
+        #endregion
+
+        #region ObjectStorageS3AsyncMethods
+        public async Task<List<S3User>?> GetS3UsersAsync(string projectId)
+        {
+            return await GetResultsAsync<S3User>($"https://api.clo.ru/v1/projects/{projectId}/s3_users");
         }
         #endregion
 
