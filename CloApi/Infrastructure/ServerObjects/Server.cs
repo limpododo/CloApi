@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CloApi.Infrastructure.Server
+namespace CloApi.Infrastructure.ServerObjects
 {
-    public class DiskInfo
+    public class Server
     {
     }
 }
