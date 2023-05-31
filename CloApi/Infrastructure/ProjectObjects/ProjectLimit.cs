@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CloApi.Infrastructure.ProjectObjects
 {
-    public record class ProjectLimits
+    public record class ProjectLimit
     {
         /// <summary>
         /// Верхнее ограничение по использованию ресурса
