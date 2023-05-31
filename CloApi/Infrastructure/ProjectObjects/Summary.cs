@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CloApi.Infrastructure.Project
+namespace CloApi.Infrastructure.ProjectObjects
 {
-    public class Image
+    public class Summary
     {
     }
 }
