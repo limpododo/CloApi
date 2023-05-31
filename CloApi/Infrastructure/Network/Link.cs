@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CloApi.Infrastructure.Network
 {
-    public class Link
+    public record class Link
     {
         /// <summary>
         /// Ссылка
