@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CloApi.API
 {
-    internal class CloRequest
+    public class CloRequest
     {
     }
 }

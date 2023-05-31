@@ -76,5 +76,16 @@ namespace CloApi.API
             }
         }
         #endregion
+
+        #region PostCloResponse
+        private async Task<T> PostParametrsAsync<T>(string path, T obj)
+        {
+            using (var message = await _client.PostAsync(path, new StringContent(JsonSerializer.Serialize(obj))))
+            {
+                var cloResponse = await message.Content.ReadAsStringAsync();
+                return JsonSerializer.Deserialize<CloResponse<T>>(cloResponse).Result;
+            }
+        }
+        #endregion
     }
 }
