@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CloApi.Infrastructure.ProjectObjects
 {
-    public class Limit
+    public class ProjectLimits
     {
     }
 }
