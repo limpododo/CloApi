@@ -14,54 +14,54 @@ namespace CloApi.Infrastructure.AdditionalSoftware
         /// Список дочерних серверов
         /// </summary>
         [JsonPropertyName("child_servers")]
-        public List<Server> ChildServers { get; set; }
+        public List<Server>? ChildServers { get; set; }
 
         /// <summary>
         /// Дата создания снапшота
         /// </summary>
         [JsonPropertyName("created_in")]
-        public DateTime DateCreated { get; set; }
+        public DateTime? DateCreated { get; set; }
 
         /// <summary>
         /// Время, в которое снапшот будет удалён
         /// </summary>
         [JsonPropertyName("deleted_in")]
-        public DateTime DateDeleted { get; set; }
+        public DateTime? DateDeleted { get; set; }
 
         /// <summary>
         /// Уникальный идентификатор снапшота
         /// </summary>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         /// <summary>
         /// Список ссылок на детальную информацию о снапшоте
         /// </summary>
         [JsonPropertyName("links")]
-        public List<Link> Links { get; set; }
+        public List<Link>? Links { get; set; }
 
         /// <summary>
         /// Название снапшота
         /// </summary>
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         /// <summary>
         /// Объект, содержащий информацию о сервере, с которого был сделан снапшот
         /// </summary>
         [JsonPropertyName("parent_server")]
-        public Server ParentServer { get; set; }
+        public Server? ParentServer { get; set; }
 
         /// <summary>
         /// Размер снапшота в гигабайтах
         /// </summary>
         [JsonPropertyName("size")]
-        public int Size { get; set; }
+        public int? Size { get; set; }
 
         /// <summary>
         /// Статус снапшота
         /// </summary>
         [JsonPropertyName("status")]
-        public string Status { get; set; }
+        public string? Status { get; set; }
     }
 }
