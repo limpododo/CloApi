@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CloApi.Infrastructure.ObjectStorageS3
 {
-    internal class S3User
+    public class S3User
     {
     }
 }

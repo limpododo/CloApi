@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CloApi.Infrastructure.Server
 {
-    internal class Flavor
+    public class Flavor
     {
     }
 }

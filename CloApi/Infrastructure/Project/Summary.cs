@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CloApi.Infrastructure.Project
 {
-    internal class Summary
+    public class Summary
     {
     }
 }

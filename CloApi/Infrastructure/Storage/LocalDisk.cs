@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CloApi.Infrastructure.Storage
 {
-    internal class LocalDisk
+    public class LocalDisk
     {
     }
 }

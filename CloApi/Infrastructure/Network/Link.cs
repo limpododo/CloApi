@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CloApi.Infrastructure.Network
 {
-    internal class Link
+    public class Link
     {
     }
 }
