@@ -42,6 +42,13 @@ namespace CloApi.API
         }
         #endregion
 
+        #region RecipeAsyncMethods
+        public async Task<List<Recipe>?> GetRecipeAsync()
+        {
+            return await GetResultsAsync<Recipe>($"https://api.clo.ru/v1/recipe");
+        }
+        #endregion
+
         #region GetCloResponse
         private async Task<List<T>> GetResultsAsync<T>(string path)
         {
