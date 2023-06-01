@@ -67,6 +67,12 @@ namespace CloApi.API
         {
             await DeleteAsync($"{BASEURL}/v1/s3_users/{userId}");
         }
+
+        public async Task<S3User?> GetS3UserAsync(string userId)
+        {
+            return await GetResultAsync<S3User>($"{BASEURL}/v1/s3_users/{userId}");
+        }
+
         #endregion
 
         #region Get
