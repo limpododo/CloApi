@@ -63,9 +63,9 @@ namespace CloApi.API
             return await PostParametrsAsync<S3User>($"{BASEURL}/v1/projects/{projectId}/s3_users", user);
         }
 
-        public async Task<S3User> CreateS3User(string projectId, S3User user)
+        public async Task DeleteS3User(string userId)
         {
-            return await PostParametrsAsync<S3User>($"{BASEURL}/v1/projects/{projectId}/s3_users", user);
+            await DeleteAsync($"{BASEURL}/v1/s3_users/{userId}");
         }
         #endregion
 
@@ -101,7 +101,7 @@ namespace CloApi.API
         #endregion
 
         #region Delete
-        private async void DeleteAsync(string path)
+        private async Task DeleteAsync(string path)
         {
             await _client.DeleteAsync(path);
         }
