@@ -73,6 +73,11 @@ namespace CloApi.API
             return await GetResultAsync<S3User>($"{BASEURL}/v1/s3_users/{userId}");
         }
 
+        public async Task<Keys?> GetS3UserKeysAsync(string userId)
+        {
+            return await GetResultAsync<Keys>($"{BASEURL}/v1/s3_users/{userId}/keys");
+        }
+
         #endregion
 
         #region Get
