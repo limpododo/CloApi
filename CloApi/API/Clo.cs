@@ -60,7 +60,7 @@ namespace CloApi.API
 
         public async Task<S3User> CreateS3User(string projectId, S3User user)
         {
-            return await PostParametrsAsync<S3User>($"{BASEURL}/v1/projects/{projectId}/s3_users", user);
+            return await PostAsync<S3User>($"{BASEURL}/v1/projects/{projectId}/s3_users", user);
         }
 
         public async Task DeleteS3User(string userId)
@@ -76,6 +76,11 @@ namespace CloApi.API
         public async Task<Keys?> GetS3UserKeysAsync(string userId)
         {
             return await GetResultAsync<Keys>($"{BASEURL}/v1/s3_users/{userId}/keys");
+        }
+
+        public async Task<Keys?> ResetS3UserKeysAsync(string userId)
+        {
+            return await PostAsync<Keys>($"{BASEURL}/v1/s3_users/{userId}/keys");
         }
 
         #endregion
@@ -101,9 +106,18 @@ namespace CloApi.API
         #endregion
 
         #region Post
-        private async Task<T> PostParametrsAsync<T>(string path, T obj)
+        private async Task<T> PostAsync<T>(string path, T obj)
         {
             using (var message = await _client.PostAsync(path, new StringContent(JsonSerializer.Serialize(obj))))
+            {
+                var cloResponse = await message.Content.ReadAsStringAsync();
+                return JsonSerializer.Deserialize<CloResponse<T>>(cloResponse).Result;
+            }
+        }
+
+        private async Task<T> PostAsync<T>(string path)
+        {
+            using (var message = await _client.PutAsync(path, null))
             {
                 var cloResponse = await message.Content.ReadAsStringAsync();
                 return JsonSerializer.Deserialize<CloResponse<T>>(cloResponse).Result;
