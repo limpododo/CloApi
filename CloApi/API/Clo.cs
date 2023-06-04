@@ -1,4 +1,5 @@
-﻿using CloApi.Infrastructure.AdditionalSoftware;
+﻿using CloApi.API.REST;
+using CloApi.Infrastructure.AdditionalSoftware;
 using CloApi.Infrastructure.ObjectStorageS3;
 using CloApi.Infrastructure.ProjectObjects;
 using System;
@@ -12,20 +13,16 @@ using System.Threading.Tasks;
 
 namespace CloApi.API
 {
-    public class Clo
+    public class Clo : Rest
     {
         private static readonly string BASEURL = "https://api.clo.ru";
 
-        private HttpClient _client;
         public Clo(string token)
         {
-            using (_client = new HttpClient())
-            {
-                _client.DefaultRequestHeaders.Accept.Clear();
-                _client.DefaultRequestHeaders.Accept.Add(
-                    new MediaTypeWithQualityHeaderValue("application/json"));
-                _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
-            }
+            _client.DefaultRequestHeaders.Accept.Clear();
+            _client.DefaultRequestHeaders.Accept.Add(
+            new MediaTypeWithQualityHeaderValue("application/json"));
+            _client.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
         }
 
         #region ProjectAsyncMethods
@@ -58,12 +55,12 @@ namespace CloApi.API
             return await GetResultsAsync<S3User>($"{BASEURL}/v1/projects/{projectId}/s3_users");
         }
 
-        public async Task<S3User> CreateS3User(string projectId, S3User user)
+        public async Task<S3User> CreateS3UserAsync(string projectId, S3User user)
         {
             return await PostAsync<S3User>($"{BASEURL}/v1/projects/{projectId}/s3_users", user);
         }
 
-        public async Task DeleteS3User(string userId)
+        public async Task DeleteS3UserAsync(string userId)
         {
             await DeleteAsync($"{BASEURL}/v1/s3_users/{userId}");
         }
@@ -82,54 +79,8 @@ namespace CloApi.API
         {
             return await PostAsync<Keys>($"{BASEURL}/v1/s3_users/{userId}/keys");
         }
-
         #endregion
 
-        #region Get
-        private async Task<List<T>> GetResultsAsync<T>(string path)
-        {
-            using (var message = await _client.GetAsync(path))
-            {
-                var cloResponse = await message.Content.ReadAsStringAsync();
-                return JsonSerializer.Deserialize<CloResponse<T>>(cloResponse)?.Results;
-            }
-        }
-
-        private async Task<T> GetResultAsync<T>(string path)
-        {
-            using (var message = await _client.GetAsync(path))
-            {
-                var cloResponse = await message.Content.ReadAsStringAsync();
-                return JsonSerializer.Deserialize<CloResponse<T>>(cloResponse).Result;
-            }
-        }
-        #endregion
-
-        #region Post
-        private async Task<T> PostAsync<T>(string path, T obj)
-        {
-            using (var message = await _client.PostAsync(path, new StringContent(JsonSerializer.Serialize(obj))))
-            {
-                var cloResponse = await message.Content.ReadAsStringAsync();
-                return JsonSerializer.Deserialize<CloResponse<T>>(cloResponse).Result;
-            }
-        }
-
-        private async Task<T> PostAsync<T>(string path)
-        {
-            using (var message = await _client.PutAsync(path, null))
-            {
-                var cloResponse = await message.Content.ReadAsStringAsync();
-                return JsonSerializer.Deserialize<CloResponse<T>>(cloResponse).Result;
-            }
-        }
-        #endregion
-
-        #region Delete
-        private async Task DeleteAsync(string path)
-        {
-            await _client.DeleteAsync(path);
-        }
-        #endregion
+       
     }
 }
